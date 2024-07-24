@@ -2,7 +2,7 @@ import Button from "@/app/_components/Button";
 import { BASE_URL } from "@/app/apis";
 import { redirect } from "next/navigation";
 
-export default function Home() {
+export default function RssFormPage() {
   const generateFeed = async (formData: FormData) => {
     "use server";
 

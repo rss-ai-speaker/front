@@ -11,14 +11,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  rssform,
+  contentlist,
 }: Readonly<{
   children: React.ReactNode;
+  rssform: React.ReactNode;
+  contentlist: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          {children}
+        <main className="w-full p-24 flex flex-wrap">
+          <nav className="flex flex-col h-full w-[500px] flex-wrap items-center gap-16 p-24">
+            {rssform}
+            {contentlist}
+          </nav>
+          <section className="flex justify-center items-center max-w-[1000px]">
+            {children}
+          </section>
         </main>
       </body>
     </html>
