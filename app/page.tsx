@@ -1,3 +1,4 @@
+import Button from "@/app/_components/Button";
 import { BASE_URL } from "@/app/apis";
 import { redirect } from "next/navigation";
 
@@ -33,9 +34,7 @@ export default function Home() {
         placeholder="RSS feed URL"
         className="border border-gray-300 rounded-md px-4 py-2"
       />
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-        Generate
-      </button>
+      <Button>Generate</Button>
     </form>
   );
 }
