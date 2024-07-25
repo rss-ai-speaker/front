@@ -14,7 +14,7 @@ const ellipsis = (text: string, length: number) =>
 
 const ContentListPage = async () => {
   const response = await fetch(`${BASE_URL}/api/list`, {
-    cache: "no-cache",
+    next: { tags: ["contentList"] },
   });
   const contentList: Content[] = await response.json();
 
@@ -27,7 +27,7 @@ const ContentListPage = async () => {
           const ellipsisTitle = ellipsis(title, 30);
           return (
             <Link
-              href={`/feed-summary?id=${id}`}
+              href={`/?id=${id}`}
               key={id}
               className="text-ellipsis w-[400px]"
             >

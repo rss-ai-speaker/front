@@ -1,5 +1,6 @@
 import Button from "@/app/_components/Button";
 import { BASE_URL } from "@/app/apis";
+import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
 export default function RssFormPage() {
@@ -15,8 +16,9 @@ export default function RssFormPage() {
         "Content-Type": "application/json",
       },
     });
+    revalidateTag("contentList");
     const text = await response.text();
-    return redirect(`/feed-summary?id=${text}`);
+    return redirect(`/?id=${text}`);
   };
 
   return (
