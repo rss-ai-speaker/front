@@ -21,17 +21,20 @@ const ContentListPage = async () => {
   return (
     <>
       <h1 className=" text-lg">Content List Page</h1>
-      <ul className="flex flex-col gap-4">
-        {contentList?.map(({ id, summary }) => {
+      <ul className="flex flex-col-reverse gap-4 overflow-y-auto">
+        {contentList?.map(({ id, summary, rss_link }) => {
           const title = summary.split("\n")[0];
           const ellipsisTitle = ellipsis(title, 30);
           return (
             <Link
               href={`/feed-summary?id=${id}`}
               key={id}
-              className="text-ellipsis"
+              className="text-ellipsis w-[400px]"
             >
-              <Markdown>{ellipsisTitle}</Markdown>
+              <div className="flex flex-col">
+                <Markdown>{ellipsisTitle}</Markdown>
+                <span className="break-words text-wrap">{rss_link}</span>
+              </div>
             </Link>
           );
         })}

@@ -21,8 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="w-full p-24 flex flex-wrap">
-          <nav className="flex flex-col h-full w-[500px] flex-wrap items-center gap-16 p-24">
+        <main className="w-full flex flex-wrap h-screen">
+          <nav className="flex flex-col h-full w-[500px] items-center gap-16 p-24">
             {rssform}
             {contentlist}
           </nav>
