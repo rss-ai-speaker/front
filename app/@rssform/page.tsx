@@ -1,5 +1,8 @@
+export const dynamic = "force-dynamic";
+
 import Button from "@/app/_components/Button";
 import { BASE_URL } from "@/app/apis";
+import { fetcher } from "@/app/apis/fetcher";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -9,7 +12,7 @@ export default function RssFormPage() {
 
     const link = formData.get("link");
 
-    const response = await fetch(`${BASE_URL}/api/summarize`, {
+    const {id} = await fetcher<{id:string}>(`${BASE_URL}/api/summarize`, {
       method: "POST",
       body: JSON.stringify({ link }),
       headers: {
@@ -17,8 +20,7 @@ export default function RssFormPage() {
       },
     });
     revalidateTag("contentList");
-    const text = await response.text();
-    return redirect(`/?id=${text}`);
+    return redirect(`/?id=${id}`);
   };
 
   return (

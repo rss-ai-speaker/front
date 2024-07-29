@@ -1,4 +1,7 @@
+export const dynamic = "force-dynamic";
+
 import { BASE_URL } from "@/app/apis";
+import { fetcher } from "@/app/apis/fetcher";
 import Markdown from "markdown-to-jsx";
 import Link from "next/link";
 
@@ -13,11 +16,10 @@ const ellipsis = (text: string, length: number) =>
   text.length > length ? text.slice(0, length) + "..." : text;
 
 const ContentListPage = async () => {
-  const response = await fetch(`${BASE_URL}/api/list`, {
+  const contentList = await fetcher<Content[]>(`${BASE_URL}/api/list`, {
     next: { tags: ["contentList"] },
   });
-  const contentList: Content[] = await response.json();
-
+  
   return (
     <>
       <h1 className=" text-lg">Content List Page</h1>
