@@ -16,6 +16,10 @@ export default async function Page({ searchParams }: PageProps) {
     { next: { tags: ["feedSummary", searchParams.id] } }
   );
 
+  if (searchParams.id === undefined) {
+    return <div>Content Details</div>;
+  }
+
   const markdownText = feedSummary.text
   return <Markdown>{markdownText}</Markdown>;
 }
