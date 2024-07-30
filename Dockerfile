@@ -22,9 +22,12 @@ RUN pnpm run build
 # Final stage
 FROM base as final
 ENV NODE_ENV=production
-USER node
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/.next ./.next
+RUN chown -R node:node /usr/src/app
+RUN chown -R node:node /usr/src/app/.next
+
 COPY package.json ./
+USER node
 EXPOSE 3000
 CMD pnpm start
